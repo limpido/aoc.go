@@ -37,16 +37,8 @@ func main() {
 	year, _ := strconv.Atoi(yearStr)
 	day, _ := strconv.Atoi(dayStr)
 
-	// construct src path and input path
-	srcPath := filepath.Join("solutions", yearStr, fmt.Sprintf("%02d.go", day))
-	var inputPath string
-	if testFlag {
-		inputPath = filepath.Join("input", yearStr, fmt.Sprintf("%02d-test.txt", day))
-	} else {
-		inputPath = filepath.Join("input", yearStr, fmt.Sprintf("%02d.txt", day))
-	}
-
 	// compile plugin
+	srcPath := filepath.Join("solutions", yearStr, fmt.Sprintf("%02d.go", day))
 	pluginPath, cleanup := compilePlugin(srcPath)
 	defer cleanup()
 
@@ -66,6 +58,12 @@ func main() {
 	}
 
 	// read input
+	var inputPath string
+	if testFlag {
+		inputPath = filepath.Join("input", yearStr, fmt.Sprintf("%02d-test.txt", day))
+	} else {
+		inputPath = filepath.Join("input", yearStr, fmt.Sprintf("%02d.txt", day))
+	}
 	content, err := os.ReadFile(inputPath)
 	if err != nil {
 		log.Fatalf("Error reading input file '%s': %v", inputPath, err)
