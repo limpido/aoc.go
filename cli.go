@@ -68,7 +68,9 @@ func main() {
 	if err != nil {
 		log.Fatalf("Error reading input file '%s': %v", inputPath, err)
 	}
-	inputStr := strings.ReplaceAll(string(content), "\r\n", "\n")
+	inputStr := string(content)
+	inputStr = strings.TrimSpace(inputStr)
+	inputStr = strings.ReplaceAll(inputStr, "\r\n", "\n")
 
 	// run solution
 	fmt.Printf("--- AoC %d Day %d ---\n", year, day)
