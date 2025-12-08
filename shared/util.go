@@ -1,5 +1,9 @@
 package shared
 
+import (
+	"slices"
+)
+
 type Point3D struct {
 	X, Y, Z int
 }
@@ -18,6 +22,16 @@ func Map[T, V any](ts []T, fn func(T) (V, error)) []V {
 		result[i], _ = fn(t)
 	}
 	return result
+}
+
+func Intersect(a, b []string) []string {
+	res := make([]string, 0)
+	for _, v := range b {
+		if slices.Contains(a, v) {
+			res = append(res, v)
+		}
+	}
+	return res
 }
 
 type UnionFind struct {
