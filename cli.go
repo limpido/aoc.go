@@ -15,6 +15,56 @@ import (
 	"aoc.go/shared"
 )
 
+func initFile(args []string) {
+	if len(args) < 3 {
+		fmt.Println("Usage: aoc init <year> <day>")
+		os.Exit(1)
+	}
+
+	yearStr := args[1]
+	dayStr := args[2]
+	day, _ := strconv.Atoi(dayStr)
+
+	solutionFilePath := filepath.Join("solutions", yearStr, fmt.Sprintf("%02d.go", day))
+	if _, err := os.Stat(solutionFilePath); err == nil {
+		fmt.Printf("Solution file already exists: %s\n", solutionFilePath)
+		os.Exit(1)
+	}
+
+	template := `package main
+
+import (
+	"strings"
+	
+	"aoc.go/shared"
+)
+
+var Instance shared.Solver = &Solver{}
+
+type Solver struct{}
+
+func parseInput(input string) any {}
+
+func (s *Solver) Part1(input string) any {}
+
+func (s *Solver) Part2(input string) any {}
+
+func main() {}
+`
+
+	err := os.MkdirAll(filepath.Dir(solutionFilePath), os.ModePerm)
+	if err != nil {
+		log.Fatalf("Error creating directories for %s: %v", solutionFilePath, err)
+	}
+
+	err = os.WriteFile(solutionFilePath, []byte(template), 0644)
+	if err != nil {
+		log.Fatalf("Error writing solution file %s: %v", solutionFilePath, err)
+	}
+
+	fmt.Printf("Created solution file: %s\n", solutionFilePath)
+}
+
 func main() {
 	var partFlag int
 	var testFlag bool
@@ -26,6 +76,11 @@ func main() {
 
 	flag.Parse()
 	args := flag.Args()
+
+	if len(args) > 0 && args[0] == "init" {
+		initFile(args)
+		return
+	}
 
 	if len(args) < 2 {
 		fmt.Println("Usage: aoc [options] <year> <day>")
