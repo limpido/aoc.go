@@ -17,7 +17,7 @@ func parseInput(input string) []shared.Point3D {
 	arr := make([]shared.Point3D, 0)
 	for _, l := range lines {
 		m := strings.Split(l, ",")
-		n := shared.Map(m, strconv.Atoi)
+		n := shared.Map(strconv.Atoi, m)
 		p := shared.Point3D{n[0], n[1], n[2]}
 		arr = append(arr, p)
 	}
