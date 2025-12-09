@@ -16,7 +16,7 @@ func EuclideanDistance3D(p1, p2 Point3D) int {
 	return dx*dx + dy*dy + dz*dz
 }
 
-func Map[T, V any](ts []T, fn func(T) (V, error)) []V {
+func Map[T, V any](fn func(T) (V, error), ts []T) []V {
 	result := make([]V, len(ts))
 	for i, t := range ts {
 		result[i], _ = fn(t)
