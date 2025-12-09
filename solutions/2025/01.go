@@ -65,4 +65,3 @@ func (s *solution) Part2(input string) any {
 }
 
 func main() {}
-

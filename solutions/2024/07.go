@@ -15,7 +15,7 @@ func dfs(target, cur int, nums []int) bool {
 	if len(nums) == 0 {
 		return cur == target
 	}
-	return dfs(target, cur + nums[0], nums[1:]) || dfs(target, cur * nums[0], nums[1:])
+	return dfs(target, cur+nums[0], nums[1:]) || dfs(target, cur*nums[0], nums[1:])
 }
 
 func dfs2(target, cur int, nums []int) bool {
@@ -25,7 +25,7 @@ func dfs2(target, cur int, nums []int) bool {
 	curStr := strconv.Itoa(cur)
 	nStr := strconv.Itoa(nums[0])
 	concatenated, _ := strconv.Atoi(curStr + nStr)
-	return dfs2(target, cur + nums[0], nums[1:]) || dfs2(target, cur * nums[0], nums[1:]) || dfs2(target, concatenated, nums[1:])
+	return dfs2(target, cur+nums[0], nums[1:]) || dfs2(target, cur*nums[0], nums[1:]) || dfs2(target, concatenated, nums[1:])
 }
 
 func parseInput(input string) ([]int, [][]int) {
@@ -47,7 +47,7 @@ func parseInput(input string) ([]int, [][]int) {
 func (s *solution) Part1(input string) any {
 	var res int
 	targets, arrs := parseInput(input)
-	for i := range(len(targets)) {
+	for i := range len(targets) {
 		if dfs(targets[i], arrs[i][0], arrs[i][1:]) {
 			res += targets[i]
 		}
@@ -58,7 +58,7 @@ func (s *solution) Part1(input string) any {
 func (s *solution) Part2(input string) any {
 	var res int
 	targets, arrs := parseInput(input)
-	for i := range(len(targets)) {
+	for i := range len(targets) {
 		if dfs2(targets[i], arrs[i][0], arrs[i][1:]) {
 			res += targets[i]
 		}
