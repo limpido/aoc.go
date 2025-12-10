@@ -43,11 +43,17 @@ var Instance shared.Solver = &Solver{}
 
 type Solver struct{}
 
-func parseInput(input string) any {}
+func parseInput(input string) any {
+	lines := strings.Split(input, "\n")
+}
 
-func (s *Solver) Part1(input string) any {}
+func (s *Solver) Part1(input string) any {
+	return
+}
 
-func (s *Solver) Part2(input string) any {}
+func (s *Solver) Part2(input string) any {
+	return
+}
 
 func main() {}
 `
