@@ -48,11 +48,11 @@ func parseInput(input string) any {
 }
 
 func (s *Solver) Part1(input string) any {
-	return
+	return 0
 }
 
 func (s *Solver) Part2(input string) any {
-	return
+	return 0
 }
 
 func main() {}
