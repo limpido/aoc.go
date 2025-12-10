@@ -4,6 +4,13 @@ import (
 	"slices"
 )
 
+func Abs(x int) int {
+	if x >= 0 {
+		return x
+	}
+	return -x
+}
+
 type Point3D struct {
 	X, Y, Z int
 }
