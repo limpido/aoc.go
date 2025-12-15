@@ -4,6 +4,14 @@ import (
 	"slices"
 )
 
+func Sum(nums []int) int {
+	total := 0
+	for _, n := range nums {
+		total += n
+	}
+	return total
+}
+
 func Abs(x int) int {
 	if x >= 0 {
 		return x
