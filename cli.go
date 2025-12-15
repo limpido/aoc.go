@@ -25,6 +25,18 @@ func initFile(args []string) {
 	dayStr := args[2]
 	day, _ := strconv.Atoi(dayStr)
 
+	inputFilePath := filepath.Join("input", yearStr, fmt.Sprintf("%02d.txt", day))
+	inputTestFilePath := filepath.Join("input", yearStr, fmt.Sprintf("%02d-test.txt", day))
+	if _, err := os.Create(inputFilePath); err != nil {
+		log.Fatalf("Error creating input file %s: %v\n", inputFilePath, err)
+	}
+	fmt.Printf("Created input file: %s\n", inputFilePath)
+
+	if _, err := os.Create(inputTestFilePath); err != nil {
+		log.Fatalf("Error creating input file %s: %v\n", inputTestFilePath, err)
+	}
+	fmt.Printf("Created input file: %s\n", inputTestFilePath)
+
 	solutionFilePath := filepath.Join("solutions", yearStr, fmt.Sprintf("%02d.go", day))
 	if _, err := os.Stat(solutionFilePath); err == nil {
 		fmt.Printf("Solution file already exists: %s\n", solutionFilePath)
